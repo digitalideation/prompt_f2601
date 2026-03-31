@@ -1,4 +1,4 @@
-# 🎤 PromptVision — Class Flow (38 Students)
+# 🎤 PromptVision — Class Flow (X Students)
 
 ## Goal
 
@@ -6,13 +6,13 @@ Create and perform a short AI-generated **song or sound composition** inspired b
 
 ## Links
 
-- [Shared SwitchDrive](https://drive.switch.ch/index.php/s/jNhPTRJUXGGV8Ez) (upload folder)
+- [Shared SwitchDrive](https://drive.switch.ch/index.php/s/X6e6ny3t0JOLOAY) (upload folder)
 - [Replicate](https://replicate.com/collections/ai-music-generation) – Music generation
 - [ScoreWiz](https://scorewiz.eu) – Live voting show platform
 
 ## Setup
 
-- **Teams of 2 students** (≈ 19 teams total).
+- **Teams of 2 students** (≈ X teams total).
 - Each team = one “Digital Country” with a **name**, **flag/emoji**, and **style** (e.g., 🪩 Neo-Synth Republic).
 - Each team generates **one track** (60+ seconds long) using **one AI music model on Replicate**.
 - Each team submits:
