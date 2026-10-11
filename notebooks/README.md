@@ -6,11 +6,11 @@
 
 ## Open in JupyterHub (individual student accounts)
 
-Each student works in their **own JupyterHub account**. Open a terminal from JupyterLab (File → New → Terminal), then clone the course repository into your home directory:
+After the updated course material is merged into the repository's **main** branch, each student works in their **own JupyterHub account**. Open a terminal from JupyterLab (File → New → Terminal), then clone the course repository into your home directory:
 
 ```bash
 cd ~
-git clone --branch h26-week5-homepage --single-branch https://github.com/digitalideation/prompt_h2601.git
+git clone https://github.com/digitalideation/prompt_h2601.git
 cd prompt_h2601/notebooks
 ```
 
