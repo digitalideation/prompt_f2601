@@ -4,17 +4,33 @@
 2. [Replicate scene prompts](01b_replicate_scene_prompts.ipynb): a second version of the basics notebook using a scene dictionary from Session 1's visual prompt craft exercise.
 3. [Artistic Telephone](02_artistic_telephone.ipynb): iterate, compare, select and pass within your group.
 
-## Open in Jupyter
+## Open in JupyterHub (individual student accounts)
 
-Download the repository ZIP from GitHub (Code → Download ZIP), extract it, and open its `notebooks` folder in the course's existing Jupyter environment. Keep all `telephone_*.py` helpers beside the notebooks. GitHub's preview does not execute notebooks.
+Each student works in their **own JupyterHub account**. Open a terminal from JupyterLab (File → New → Terminal), then clone the course repository into your home directory:
 
-Use Python 3.10 or newer. Install the shared requirements in the active kernel:
+```bash
+cd ~
+git clone --branch h26-week5-homepage --single-branch https://github.com/digitalideation/prompt_h2601.git
+cd prompt_h2601/notebooks
+```
+
+If you already have a checkout, do not clone again: open its `notebooks` folder instead. Open a notebook in JupyterLab's file browser and run it with **Shift+Enter**. GitHub's preview cannot run notebooks. Keep the `telephone_*.py` helpers next to the notebooks; they are included in the clone.
+
+Use Python 3.10 or newer. In a notebook, install the shared requirements in the **active notebook kernel** (only if the JupyterHub environment does not already provide them):
 
 ```python
 %pip install -r requirements.txt
 ```
 
-Restart the kernel if needed. Telephone uses ipywidgets 8 for prompt fields, the model dropdown, file upload and attempt selection. Check that the controls appear when you open the notebook. A file-path fallback is supplied for uploads; the other controls require working widgets.
+Restart the kernel after installation if prompted. The JupyterHub administrator may choose to preinstall these packages for everyone; students should not need administrator permissions. If installation is denied or internet access from JupyterHub is restricted, ask the instructor rather than changing the shared environment.
+
+**Before editing:** In JupyterLab, use File → Save Notebook As… to make your own working copy in the same `notebooks` folder (for example, `my_replicate_basics.ipynb`). This keeps the course starter available and keeps relative imports and `requirements.txt` in the right place. Generated results are stored in `notebooks/outputs/`, which Git ignores. Each student's JupyterHub home directory is separate; other students cannot access these results through the course checkout.
+
+To fetch updated course material later, first back up your own notebooks and files. From the original repository folder, use `git status` to inspect changes before `git pull`; Git may refuse a pull when tracked notebooks have been edited. Do not run `git reset --hard` or `git clean -fd` on your work. If `git pull` fails, ask the instructor for help instead of deleting your work.
+
+Telephone uses ipywidgets 8 for prompt fields, the model dropdown, file upload and attempt selection. Check that its controls appear. There is a file-path fallback for uploads; the other controls require functioning widgets.
+
+Only Replicate image generation uses your personal Replicate API token, entered via the notebook's hidden prompt. Never paste tokens into notebook code, commit them to Git, share them through SWITCHdrive, or place them in `outputs/`.
 
 All student notebooks default to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts.
 
