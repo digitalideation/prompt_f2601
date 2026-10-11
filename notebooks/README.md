@@ -36,7 +36,7 @@ All student notebooks default to offline practice. The labelled diagram tests sa
 
 ## Replicate and live attempts
 
-Use your individual account and the hidden token input. Never paste tokens into code or submissions. Type GENERATE to request a potentially paid attempt. Saving, comparison and export do not create predictions. Restart the kernel when finished.
+Use your individual account and the hidden token input. Never paste tokens into code or submissions. In live mode, running the generation cell immediately requests a potentially paid attempt; there is no separate confirmation. Saving, comparison and export do not create predictions. Restart the kernel when finished.
 
 The initial model is `black-forest-labs/flux-schnell`. Use the model list supplied for the activity. These examples request one square PNG.
 
@@ -51,8 +51,9 @@ For a revision, edit one field in section 3a and rerun 3a, 3b and sections 4 to 
 ## Your Telephone workflow
 
 - Set session name, group and seat once. Everyone uses the same class session name.
-- Start a round and load the assigned incoming PNG in rounds 2 to 5.
-- Edit the prompt, generate, then save and preview privately.
+- Select the round, then upload the assigned PNG in rounds 2 to 5 (round 1 needs no upload).
+- Inspect the incoming image and note what you observe before writing a prompt.
+- Write your prompt, generate, then save and preview privately.
 - Revise and repeat within the time and spending budget agreed in class.
 - Refresh the comparison cell and choose any saved attempt for that round.
 - Run **Save selected image for passing**. Download that PNG and upload it to the group's SWITCHdrive folder.
