@@ -1,4 +1,4 @@
-# Week 5: Image & Video Prompting and Workflow Design
+# Session 1: Image & Video Prompting and Workflow Design
 
 [Back to the course homepage](./readme.md)
 
@@ -7,7 +7,7 @@
 **Class:** 30 students, working in six groups of five for Artistic Telephone.  
 **Tools:** Replicate web UI, a prepared Jupyter Notebook, and SWITCHdrive.
 
-Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class. [Teaching notes](./notes/day01.md) provide demonstration cues and preparation checks.
+Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), or its [structured scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class. [Teaching notes](./notes/day01.md) provide demonstration cues and preparation checks.
 
 ## Focus
 
@@ -35,7 +35,7 @@ By the end of the session, you should be able to:
 
 | Block | Activity | Duration |
 | --- | --- | --- |
-| 1 | Visual workflow introduction | 10 min |
+| 1 | How models work and visual workflow introduction | 10 min |
 | 2 | Replicate web UI and visual prompt craft | 20 min |
 | 3 | Notebook walkthrough and first generation | 20 min |
 | | Break | 10 min |
@@ -46,6 +46,14 @@ By the end of the session, you should be able to:
 | | **Total** | **150 min** |
 
 ## Block 1: Visual workflow introduction
+
+### 1. How Text-to-Image / Video Models Work
+
+The instructor presents the existing slides live in PowerPoint. A PDF copy will be added here once uploaded. Keep this introduction beginner-friendly and connect it to the technical sessions students already know.
+
+Use about five minutes for the slides and five minutes for the workflow example below, within the existing 10-minute block.
+
+### 2. From concept to visual workflow
 
 Start with a completed example: **a quiet city gradually waking up**.
 
@@ -85,13 +93,15 @@ Use prepared outputs for optional comparisons across models so the class can dis
 
 ## Block 3: Notebook walkthrough and first generation
 
-Continue the same task in Jupyter using the [short API notebook](./notebooks/01_replicate_basics.ipynb). It starts with an offline practice diagram; switch to live mode for real generation with the instructor:
+Continue the same task in Jupyter using the [short API notebook](./notebooks/01_replicate_basics.ipynb) or its [scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb). Choose one for the 20-minute walkthrough; both use the same API steps. The scene-prompt version turns the Block 2 structure into an editable dictionary, then assembles and displays a single text prompt. It starts with an offline practice diagram; switch to live mode for real generation with the instructor:
 
 1. Enter your API token privately using the supplied setup method.
 2. Use the initial class model example and edit the prompt. The basics notebook uses one model; the Telephone notebook adds a curated dropdown.
 3. Run the generation cell.
 4. Display and save the image.
 5. Record the prompt, model, relevant settings, and a short observation.
+
+In the scene-prompt version, the `scene` dictionary holds subject, action, setting, time, medium/style, lighting, composition/camera, palette and mood. These are writing aids, not separate Replicate parameters. Only the assembled text is sent as `inputs["prompt"]`; image dimensions and output format remain model settings.
 
 The notebook should make the relationship between web UI inputs and API inputs visible. Students edit text and a few settings; they do not need to write Python from scratch.
 
@@ -175,11 +185,10 @@ Keep the following together:
 - A three-shot storyboard with consistency notes.
 - One revised prompt, why you changed it, and an output comparison if generated.
 
-Preserve the first and revised outputs where available. Selected visuals can guide the audio work in Week 6 and support discussion in Week 8.
+Preserve the first and revised outputs where available. Selected visuals can guide the audio work in Session 2 and support discussion in Session 3.
 
 ## Delivery and preparation notes
 
 Use breakout rooms online or table groups in person. The same notebooks, SWITCHdrive folders, image-passing rules, and digital submissions apply in both settings. Use screen sharing or projection for the gallery and video demonstration.
 
 Before teaching, check the notebook setup, one complete group handoff, and model latency. Prepare image/video examples and provide the class folder links. The initial API example uses FLUX.1 schnell from the previous guide; confirm the final model choice and live behaviour before class. The notebooks' offline diagrams rehearse mechanics and do not replace prepared generated examples.
-

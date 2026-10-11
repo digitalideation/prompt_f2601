@@ -1,4 +1,4 @@
-# Week 5 teaching notes
+# Session 1 teaching notes
 
 [Session plan](../day01.md) | [Notebook setup](../notebooks/README.md) | [Artistic Telephone](./artistic_telephone.md)
 
@@ -14,7 +14,9 @@ These notes support the 150-minute session. Use the same learning sequence onlin
 6. Prepare a three-shot storyboard example, actual generated comparison images, and a short video result. The notebooks' labelled offline diagram only rehearses mechanics; it is not a creative-generation demonstration.
 7. Rehearse multiple attempts, selection of an earlier attempt, one handoff, and instructor decoding. Check widgets, original PNG transfer, filenames, and timing. Keep all five rounds in each group folder; never resize or convert handoffs.
 
-## Block 1: Workflow, 10 minutes
+## Block 1: How models work and workflow, 10 minutes
+
+Use the existing **How Text-to-Image / Video Models Work** slides live in PowerPoint for about five minutes. Add the PDF reference link once the instructor uploads it. Use the remaining five minutes for the workflow example; do not add another lecture block.
 
 Show a finished example and walk backwards through its decisions:
 
@@ -52,7 +54,9 @@ Use supported model fields only. Do not copy tool-specific negative-prompt synta
 
 ## Block 3: Simple API notebook, 20 minutes
 
-Open [01_replicate_basics.ipynb](../notebooks/01_replicate_basics.ipynb).
+Choose [01_replicate_basics.ipynb](../notebooks/01_replicate_basics.ipynb) for the plain prompt or [01b_replicate_scene_prompts.ipynb](../notebooks/01b_replicate_scene_prompts.ipynb) to continue Block 2 with a scene dictionary. Both follow the same API flow. Use one version during this slot, rather than running both end to end.
+
+In the scene version, show the dictionary, assemble and read the resulting prompt, then generate. Explain that dictionary keys organise the description; they are not additional model controls. Change one field, such as lighting, rebuild the prompt and compare saved outputs if time allows.
 
 | Time | Teaching action |
 | --- | --- |
@@ -114,7 +118,7 @@ No student video generation is required. Do not add p5.js or a full editing task
 
 Students retain image-chain contributions, prompts/settings, observations, a three-shot plan and a repair prompt. The shared PNGs supply the selected-chain gallery without collecting private logs. Students keep their local attempt folders and submit reflection/storyboard/refinement work through the usual class location.
 
-Explain that Week 6 can use one visual as the audio brief, and Week 8 will distinguish preference from adherence to a task. Do not teach the full evaluation clinic here.
+Explain that Session 2 can use one visual as the audio brief, and Session 3 will distinguish preference from adherence to a task. Do not teach the full evaluation clinic here.
 
 ## Still to verify with the instructor
 
@@ -124,4 +128,3 @@ Explain that Week 6 can use one visual as the audio brief, and Week 8 will disti
 - Live Replicate smoke test and representative generated demo media.
 
 Technical validation completed for the draft is recorded in the [notebook setup guide](../notebooks/README.md). Treat offline/mocked testing separately from live generation.
-

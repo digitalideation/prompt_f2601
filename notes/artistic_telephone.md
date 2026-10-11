@@ -1,6 +1,6 @@
-# Artistic Telephone: Week 5 class flow
+# Artistic Telephone: Session 1 class flow
 
-[Week 5 session](../day01.md) | [Telephone notebook](../notebooks/02_artistic_telephone.ipynb)
+[Session 1](../day01.md) | [Telephone notebook](../notebooks/02_artistic_telephone.ipynb)
 
 ## Goal
 
@@ -121,4 +121,3 @@ The shared group folders already contain everything needed for the instructor's 
 ## Instructor checks
 
 Test one complete handoff with the actual Jupyter and SWITCHdrive setup. The working format produces **150 selected class-wide images**, or five per student. Total generations can be higher because students iterate. Set a per-round attempt and spending budget based on a timed pilot, including walkthroughs and refinement. Check current model cost and latency with the class budget. Confirm the model list, sample media, folder links, and accessible audio/video playback before teaching.
-

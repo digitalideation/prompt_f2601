@@ -1,8 +1,9 @@
-# Week 5 notebooks
+# Session 1 notebooks
 
 1. [Replicate basics](01_replicate_basics.ipynb): the short API introduction.
-2. [Artistic Telephone](02_artistic_telephone.ipynb): iterate, compare, select and pass within your group.
-3. [Instructor reveal](03_telephone_reveal.ipynb): decode the shared PNGs and show each chain in order.
+2. [Replicate scene prompts](01b_replicate_scene_prompts.ipynb): a second version of the basics notebook using a scene dictionary from Session 1's visual prompt craft exercise.
+3. [Artistic Telephone](02_artistic_telephone.ipynb): iterate, compare, select and pass within your group.
+4. [Instructor reveal](03_telephone_reveal.ipynb): decode the shared PNGs and show each chain in order.
 
 ## Open in Jupyter
 
@@ -16,19 +17,25 @@ Use Python 3.10 or newer. Install the shared requirements in the active kernel:
 
 Restart the kernel if needed. Telephone uses ipywidgets 8 for prompt fields, the model dropdown, file upload and attempt selection. Check widget rendering before class. A file-path fallback is supplied for uploads; the other controls require working widgets.
 
-Both student notebooks default to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts. Use actual prepared generated examples for artistic discussion.
+All student notebooks default to offline practice. The labelled diagram tests saving and transfer, makes no API calls, and does not respond to prompts. Use actual prepared generated examples for artistic discussion.
 
 ## Replicate and live attempts
 
 Students use individual accounts and hidden token input. Never paste tokens into code or submissions. Type GENERATE to request a potentially paid attempt. Saving, comparison and export do not create predictions. Restart the kernel when finished.
 
-The initial curated dropdown contains `black-forest-labs/flux-schnell`. Edit MODELS in `telephone_helpers.py` to curate the list. Confirm each model's inputs and compatibility with version-based prediction creation and a list of HTTPS image URLs. Different output schemas require adapting the helper. Both student examples request one square PNG.
+The initial curated dropdown contains `black-forest-labs/flux-schnell`. Edit MODELS in `telephone_helpers.py` to curate the list. Confirm each model's inputs and compatibility with version-based prediction creation and a list of HTTPS image URLs. Different output schemas require adapting the helper. The student image examples request one square PNG.
 
 Telephone uses the same prediction lifecycle as the basics notebook: look up a model version, create a prediction, wait for completion, then download its output. It records the resolved version and prediction ID. The basics notebook remains the short introduction and does not record those extra fields in its saved prompt file.
 
 No live generation has been performed for this update. Check the class model, costs and response format before teaching.
 
-## The student loop
+## Structured scene-prompt version
+
+Use `01b_replicate_scene_prompts.ipynb` as an alternative to the plain basics walkthrough. Students edit a `scene` dictionary, assemble and inspect a text prompt, then use the same generation/download steps. The dictionary is a writing aid, not another API schema. A snapshot of its fields is saved alongside the exact prompt and model settings in `outputs/scene_basics/<attempt>/prompt.json`.
+
+For a revision, edit one field in section 3a and rerun 3a, 3b and sections 4 to 6. Each generation gets a separate output folder. Offline practice still draws the same labelled diagram; it does not visualise the scene prompt.
+
+## The Telephone student loop
 
 - Set session name, group and seat once. Everyone uses the same class session name.
 - Start a round and load the assigned incoming PNG in rounds 2 to 5.
@@ -101,4 +108,3 @@ Neither test mode makes paid API calls.
 - [Official Python client](https://github.com/replicate/replicate-python)
 - [FLUX.1 schnell inputs](https://replicate.com/black-forest-labs/flux-schnell/api)
 - [File outputs](https://replicate.com/docs/topics/predictions/output-files)
-
