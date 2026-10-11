@@ -135,6 +135,16 @@ def _prepared_handoff(root, run):
     if record["mode"] not in ("live", "practice"):
         raise ValueError("Unknown generation mode.")
 
+    # Earlier private attempt records may lack a session. Recover the
+    # existing session name from the standard outputs/telephone/SESSION/Group_X_SYY
+    # directory only when that naming convention matches this saved record.
+    if record.get("session") in (None, "", "legacy"):
+        expected_root = f"Group_{record['group']}_S{record['seat']:02d}"
+        if root.name == expected_root and re.fullmatch(r"[A-Za-z0-9_-]{1,40}", root.parent.name):
+            record["session"] = root.parent.name
+        else:
+            record["session"] = "legacy"
+
     data = encode((run / "image.png").read_bytes(), record)
     try:
         decoded = decode(data)
