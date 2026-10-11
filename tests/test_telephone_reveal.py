@@ -159,6 +159,71 @@ class TelephoneRevealTests(unittest.TestCase):
             self.assertIn("Duplicate: resolve files", render(records, warnings))
             self.assertEqual(render(records, warnings).count("Missing image"), 21)
 
+    def test_plain_pngs_show_in_correct_positions_without_records(self):
+        with tempfile.TemporaryDirectory() as folder:
+            group = Path(folder) / "Group_A"
+            group.mkdir()
+            # Like an ordinary downloaded image: a valid PNG but no Telephone bits.
+            (group / "01.png").write_bytes(practice_image())
+            (group / "05_01.png").write_bytes(practice_image())
+            records, warnings = scan(folder)
+            self.assertEqual(warnings, [])
+            self.assertEqual(len(records), 2)
+            self.assertIn(("unrecorded", "unrecorded", "A", 1, 1), records)
+            self.assertIn(("unrecorded", "unrecorded", "A", 5, 2), records)
+            html = render(records, warnings)
+            self.assertEqual(html.count("data:image/png;base64,"), 2)
+            self.assertEqual(html.count("Prompt unavailable"), 2)
+            self.assertNotIn("Reveal prompt and settings", html)
+
+            records, warnings = scan(
+                folder, fallback_session="class1", fallback_mode="live",
+                prompt_overrides={"Group_A/01.png": "<script>alert('bad')</script>"},
+            )
+            self.assertEqual(warnings, [])
+            html = render(records, warnings)
+            self.assertIn("Reveal separately supplied prompt", html)
+            self.assertIn("&lt;script&gt;", html)
+            self.assertNotIn("<script>", html)
+            self.assertEqual(html.count("Prompt unavailable"), 1)
+
+    def test_plain_and_embedded_images_share_known_session(self):
+        with tempfile.TemporaryDirectory() as folder:
+            group = Path(folder) / "Group_A"
+            group.mkdir()
+            (group / "01.png").write_bytes(encode(practice_image(), context()))
+            (group / "05_01.png").write_bytes(practice_image())
+            records, warnings = scan(folder)
+            self.assertEqual(warnings, [])
+            self.assertEqual(len(records), 2)
+            self.assertIn(("class1", "practice", "A", 1, 1), records)
+            self.assertIn(("class1", "practice", "A", 5, 2), records)
+            html = render(records, warnings)
+            self.assertIn("A calm lake", html)
+            self.assertEqual(html.count("Prompt unavailable"), 1)
+
+            (group / "02_01.png").write_bytes(practice_image())  # Invalid seat order.
+            records, warnings = scan(folder)
+            self.assertEqual(len(records), 2)
+            self.assertTrue(any("clockwise seat order" in msg for msg in warnings))
+
+    def test_damaged_prompt_record_keeps_image_visible(self):
+        with tempfile.TemporaryDirectory() as folder:
+            group = Path(folder) / "Group_A"
+            group.mkdir()
+            encoded = encode(practice_image(), context())
+            with Image.open(io.BytesIO(encoded)) as image:
+                pixels = bytearray(image.tobytes())
+                pixels[HEADER * 8 + 1] ^= 1
+                damaged = Image.frombytes("RGB", image.size, bytes(pixels))
+                out = io.BytesIO()
+                damaged.save(out, format="PNG")
+            (group / "01.png").write_bytes(out.getvalue())
+            records, warnings = scan(folder)
+            self.assertEqual(len(records), 1)
+            self.assertTrue(any("unreadable" in msg for msg in warnings))
+            self.assertIn("Prompt unavailable", render(records, warnings))
+
     def test_notebook_iteration_and_earlier_selection(self):
         notebook = Path(__file__).resolve().parents[1] / "notebooks" / "02_artistic_telephone.ipynb"
         cells = {cell.id: cell.source for cell in nbformat.read(notebook, as_version=4).cells if cell.cell_type == "code"}
