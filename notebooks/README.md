@@ -36,7 +36,7 @@ All student notebooks default to offline practice. The labelled diagram tests sa
 
 ## Replicate and live attempts
 
-Use your individual account and the hidden token input. Never paste tokens into code or submissions. Type GENERATE to request a potentially paid attempt. Saving, comparison and export do not create predictions. Restart the kernel when finished.
+Use your individual account and the hidden token input. Never paste tokens into code or submissions. In live mode, running the generation cell immediately requests a potentially paid attempt; there is no separate confirmation. Saving, comparison and export do not create predictions. Restart the kernel when finished.
 
 The initial model is `black-forest-labs/flux-schnell`. Use the model list supplied for the activity. These examples request one square PNG.
 
