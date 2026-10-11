@@ -2,7 +2,7 @@
 
 Practical prompting for images, video, music, sound, and text, with an emphasis on creative experimentation, documented workflows, and critical reflection.
 
-![Generative media course illustration](./assets/landing.jpg)
+![Abstract creative workflows across image, sound and evaluation](./assets/landing.svg)
 
 ## Overview
 

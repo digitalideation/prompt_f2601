@@ -2,6 +2,8 @@
 
 [Back to the course homepage](./readme.md)
 
+![Abstract sequence of visual variations for Session 1](./assets/session01.svg)
+
 **Duration:** 2 h 20 min (140 minutes), including a 10-minute break.  
 **Delivery:** Online or in person, to be confirmed. Activities and learning goals are the same in either format.  
 **Class:** 30 students, working in six groups of five for Artistic Telephone.  
