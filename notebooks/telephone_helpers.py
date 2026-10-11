@@ -122,9 +122,9 @@ def history(root):
     return sorted(records, key=lambda record: (record.get("recorded_at_utc", ""), record["run_path"]))
 
 
-def export_handoff(root, run):
-    """Embed this selected attempt's record in PNG pixels for the reveal."""
-    from telephone_steg import encode
+def _prepared_handoff(root, run):
+    """Encode and immediately verify the selected image and prompt snapshot."""
+    from telephone_steg import encode, decode
     root, run = Path(root), Path(run)
     if not run.resolve().is_relative_to((root / "private").resolve()):
         raise ValueError("Choose a saved run from this student's private history.")
@@ -134,17 +134,79 @@ def export_handoff(root, run):
         raise ValueError("Saved routing information is inconsistent.")
     if record["mode"] not in ("live", "practice"):
         raise ValueError("Unknown generation mode.")
-    # Practice exports are kept separate to prevent confusion with live play.
+
+    data = encode((run / "image.png").read_bytes(), record)
+    try:
+        decoded = decode(data)
+    except ValueError as error:
+        raise ValueError(
+            "Could not verify the embedded Telephone record immediately after encoding. "
+            "Keep the private saved attempt and report this error."
+        ) from error
+    for key in ("outgoing", "group", "seat", "round", "prompt", "mode", "session"):
+        if decoded[key] != record[key]:
+            raise ValueError(f"Embedded Telephone record differs from the saved {key}.")
+    return root, record, expected, data
+
+
+def _verify_handoff_file(target, data):
+    """Verify exact saved bytes and decode from disk before reporting success."""
+    from telephone_steg import decode
+    saved = target.read_bytes()
+    if saved != data:
+        raise IOError(
+            f"Saved PNG changed after export: {target}. "
+            "Do not upload this file; keep your original private attempt."
+        )
+    try:
+        decode(saved)
+    except ValueError as error:
+        raise IOError(
+            f"Saved PNG has no readable embedded record: {target}. "
+            "Do not upload this file; keep your original private attempt."
+        ) from error
+
+
+def export_handoff(root, run):
+    """Export the selected PNG, with a verified record; never replace a handoff silently."""
+    root, record, expected, data = _prepared_handoff(root, run)
     folder = root / ("handoff" if record["mode"] == "live" else "practice_handoff") / expected["folder"]
     folder.mkdir(parents=True, exist_ok=True)
     target = folder / expected["outgoing"]
-    data = encode((run / "image.png").read_bytes(), record)
     if target.exists():
         if target.read_bytes() == data:
+            _verify_handoff_file(target, data)
             return target
-        raise FileExistsError("An image is already selected for this round. Ask the instructor before replacing it.")
+        raise FileExistsError(
+            "An image is already selected for this round, but its contents differ "
+            "from this verified export. Do not overwrite it silently. "
+            "Use 'Rebuild verified handoff' below if its record is missing, "
+            "and coordinate replacement with your group."
+        )
     with target.open("xb") as stream:
         stream.write(data)
+    _verify_handoff_file(target, data)
+    return target
+
+
+def rebuild_handoff(root, run):
+    """Recover a verified copy without replacing the original handed-off PNG.
+
+    Intended for old or damaged handoff files. Students can download this copy
+    after checking its embedded record and coordinating any shared-file replacement.
+    """
+    root, record, expected, data = _prepared_handoff(root, run)
+    target = root / "verified_reexports" / expected["folder"] / expected["outgoing"]
+    target.parent.mkdir(parents=True, exist_ok=True)
+    if target.exists():
+        if target.read_bytes() != data:
+            raise FileExistsError(
+                "A different verified re-export already exists. Do not replace it silently."
+            )
+    else:
+        with target.open("xb") as stream:
+            stream.write(data)
+    _verify_handoff_file(target, data)
     return target
 
 
