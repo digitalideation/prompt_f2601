@@ -241,6 +241,21 @@ class TelephoneRevealTests(unittest.TestCase):
             self.assertTrue(any("unreadable" in msg for msg in warnings))
             self.assertIn("Prompt unavailable", render(records, warnings))
 
+    def test_notebook_round_steps_and_prompts_follow_inspection(self):
+        notebook = Path(__file__).resolve().parents[1] / "notebooks" / "02_artistic_telephone.ipynb"
+        cells = nbformat.read(notebook, as_version=4).cells
+        ids = [c.id for c in cells]
+        self.assertEqual(len(ids), len(set(ids)))
+        steps = ["telephone-6", "telephone-upload-widget", "telephone-8",
+                 "telephone-prompt-widget", "telephone-10", "telephone-12"]
+        self.assertEqual([ids.index(i) for i in steps], sorted(ids.index(i) for i in steps))
+        round_code = next(c.source for c in cells if c.id == "telephone-6")
+        inspect_code = next(c.source for c in cells if c.id == "telephone-8")
+        prompt_code = next(c.source for c in cells if c.id == "telephone-prompt-widget")
+        self.assertNotIn("prompt_box", round_code)
+        self.assertIn("display(Image", inspect_code)
+        self.assertIn("prompt_box = widgets.Textarea", prompt_code)
+
     def test_notebook_iteration_and_earlier_selection(self):
         notebook = Path(__file__).resolve().parents[1] / "notebooks" / "02_artistic_telephone.ipynb"
         cells = {cell.id: cell.source for cell in nbformat.read(notebook, as_version=4).cells if cell.cell_type == "code"}
@@ -250,6 +265,9 @@ class TelephoneRevealTests(unittest.TestCase):
             ns["root"] = Path(folder)
             ns["attempts"] = Attempts(folder)
             exec(cells["telephone-6"], ns)
+            exec(cells["telephone-upload-widget"], ns)
+            exec(cells["telephone-8"], ns)
+            exec(cells["telephone-prompt-widget"], ns)
             ns["prompt_box"].value = "First prompt"
             exec(cells["telephone-10"], ns)
             exec(cells["telephone-12"], ns)
