@@ -1,6 +1,6 @@
 # Session 1 teaching notes
 
-[Session plan](../day01.md) | [Notebook setup](../notebooks/README.md) | [Artistic Telephone](./artistic_telephone.md)
+[Session plan](../day01.md) | [Notebook setup](../notebooks/README.md) | [Artistic Telephone activity](../activities/artistic_telephone.md)
 
 These notes support the 150-minute session. Use the same learning sequence online or in person. Group discussion happens in breakout rooms or around tables; media sharing stays digital in both formats.
 
@@ -76,7 +76,7 @@ The notebook saves each attempt in its own folder. Students can change a prompt 
 
 ## Block 4: Artistic Telephone, 45 minutes
 
-Use the [updated game guide](./artistic_telephone.md) and [Telephone notebook](../notebooks/02_artistic_telephone.ipynb).
+Use the [game guide](../activities/artistic_telephone.md) and [Telephone notebook](../notebooks/02_artistic_telephone.ipynb).
 
 Six groups of five; five chains circulate simultaneously within each group. Keep the model fixed. Everyone describes and regenerates an image every round. Retain the original seat-sequence filenames.
 
@@ -127,4 +127,10 @@ Explain that Session 2 can use one visual as the audio brief, and Session 3 will
 - SWITCHdrive links and permissions, exact submission location.
 - Live Replicate smoke test and representative generated demo media.
 
-Technical validation completed for the draft is recorded in the [notebook setup guide](../notebooks/README.md). Treat offline/mocked testing separately from live generation.
+Technical validation completed for the draft is recorded in the [notebook preparation notes](notebooks.md). Treat offline/mocked testing separately from live generation.
+
+## Demonstration materials and delivery
+
+Present the model slides live in PowerPoint and add the PDF to the student page once it is uploaded. Show the city workflow from concept to storyboard, scene prompts, images and a short video. Compare prepared outputs across models if time permits.
+
+Keep a prepared video available for the image-to-video demonstration. Use breakout rooms online or table groups in person, and screen sharing or projection for the reveal. Folder links and prepared media should be ready before class.

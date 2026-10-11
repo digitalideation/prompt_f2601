@@ -14,7 +14,7 @@ Each session lasts **2 h 30 min, including a 10-minute break**. All sessions can
 
 | Session | Topic | Main activity | Materials |
 | --- | --- | --- | --- |
-| 1 | Image & Video Prompting and Workflow Design | Artistic Telephone, storyboard, and visual refinement | [Session plan](./day01.md) |
+| 1 | Image & Video Prompting and Workflow Design | Artistic Telephone, storyboard, and visual refinement | [Session materials](./day01.md) |
 | 2 | Prompting for Audio, Music & Multimodal Workflows | PromptVision: an AI Eurovision-style creation sprint | H26 session materials coming next |
 | 3 | Generative AI Evaluation Clinic | Human and automated evaluation of generated outputs | H26 session materials coming next |
 
@@ -24,9 +24,9 @@ Each session lasts **2 h 30 min, including a 10-minute break**. All sessions can
 - Storyboarding, scene descriptions, and visual consistency
 - Designing and iterating multi-step image/video workflows
 
-Start with Replicate's web UI, then use a prepared Jupyter Notebook to record prompts, generate images, and compare iterations. Artistic Telephone makes interpretation drift visible; a storyboard and refinement task introduce deliberate consistency. Video generation is an instructor demonstration, with an optional student extension.
+Start with Replicate's web UI, then use a prepared Jupyter Notebook to record prompts, generate images, and compare iterations. Artistic Telephone makes interpretation drift visible; a storyboard and refinement task introduce deliberate consistency. We will also explore how to turn a still image into a short video. You can try this as an optional extension.
 
-[Open the Session 1 plan](./day01.md), then start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb). For a structured version of the same API exercise, use [Replicate scene prompts](./notebooks/01b_replicate_scene_prompts.ipynb). The [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) adds iteration, comparison and selected-image passing. The [instructor reveal notebook](./notebooks/03_telephone_reveal.ipynb) assembles the shared PNGs into complete image chains with revealable prompts. See the [game guide](./notes/artistic_telephone.md) and [Jupyter setup instructions](./notebooks/README.md).
+[Open Session 1](./day01.md), then start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb). For a structured version of the same API exercise, use [Replicate scene prompts](./notebooks/01b_replicate_scene_prompts.ipynb). The [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) adds iteration, comparison and selected-image passing. At the end of the game, we will compare the image chains and reveal their prompts. See the [game guide](./activities/artistic_telephone.md) and [Jupyter setup instructions](./notebooks/README.md).
 
 ### Session 2: Prompting for Audio, Music & Multimodal Workflows
 
@@ -34,7 +34,7 @@ Start with Replicate's web UI, then use a prepared Jupyter Notebook to record pr
 - Combining text, image, audio, and video in multimodal workflows
 - Choosing and iterating with the right media and tools for a project
 
-PromptVision keeps the creative sprint, listening party, and voting. Teams use a Session 1 visual to guide their audio and document iterations in a notebook. Detailed H26 materials will follow the Session 1 update.
+In PromptVision, you will use a Session 1 visual to guide your audio, document iterations in a notebook, and share your work in a listening party with voting. Session materials will be available here.
 
 ### Session 3: Generative AI Evaluation Clinic
 
@@ -42,7 +42,7 @@ PromptVision keeps the creative sprint, listening party, and voting. Teams use a
 - Hands-on evaluation of text outputs, with image evaluation as a secondary focus
 - Human feedback and simple automated evaluation to compare and improve prompts/workflows
 
-The planned clinic connects Arena comparisons with human ratings, a prepared Ragas text-evaluation exercise, and an ImageReward demonstration. Audio and video evaluation receive a short conceptual overview. Detailed H26 materials are in preparation.
+We will compare Arena rankings with our own ratings, try a prepared Ragas text-evaluation exercise, and explore an ImageReward example. We will also discuss what can be evaluated in audio and video. Session materials will be available here.
 
 ## Competencies
 
@@ -68,8 +68,8 @@ The planned clinic connects Arena comparisons with human ratings, a prepared Rag
 ## Working tools
 
 - **Replicate:** use the [web UI](https://replicate.com) and prepared API calls with your individual account.
-- **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Session 1 includes [the basics notebook, a scene-prompt version, Telephone and an instructor reveal notebook](./notebooks/README.md); students edit prompts and run supplied cells. Later sessions' notebooks will follow.
-- **Model selection:** the instructor will provide a curated list for each activity.
+- **Jupyter Notebook:** keep prompt versions, generated media, observations, and evaluation results together. Session 1 includes [the basics notebook, a scene-prompt version and Artistic Telephone](./notebooks/README.md); you edit prompts and run supplied cells. Later sessions' notebooks will follow.
+- **Model selection:** use the model list provided for each activity.
 - **SWITCHdrive:** share media within groups and submit work through the class folders. Folder links will be supplied in class.
 
 Keep API tokens private and out of notebooks, screenshots, and submissions.

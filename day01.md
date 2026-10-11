@@ -7,7 +7,7 @@
 **Class:** 30 students, working in six groups of five for Artistic Telephone.  
 **Tools:** Replicate web UI, a prepared Jupyter Notebook, and SWITCHdrive.
 
-Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), or its [structured scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class. [Teaching notes](./notes/day01.md) provide demonstration cues and preparation checks.
+Start with the [Replicate basics notebook](./notebooks/01_replicate_basics.ipynb), or its [structured scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb), then use the [Artistic Telephone notebook](./notebooks/02_artistic_telephone.ipynb) for the game. Read the [Jupyter setup instructions](./notebooks/README.md) before class.
 
 ## Focus
 
@@ -49,19 +49,17 @@ By the end of the session, you should be able to:
 
 ### 1. How Text-to-Image / Video Models Work
 
-The instructor presents the existing slides live in PowerPoint. A PDF copy will be added here once uploaded. Keep this introduction beginner-friendly and connect it to the technical sessions students already know.
-
-Use about five minutes for the slides and five minutes for the workflow example below, within the existing 10-minute block.
+How does a text description become an image or video? We will connect the concepts from your technical sessions to the visuals you generate. The slides will be available here as a PDF.
 
 ### 2. From concept to visual workflow
 
-Start with a completed example: **a quiet city gradually waking up**.
+Consider this example: **a quiet city gradually waking up**.
 
-A three-shot sequence might move from a wide view of a misty street, to a cyclist crossing a bridge, to a close-up of a bicycle wheel on the wet pavement. Show the concept, storyboard, scene prompts, generated images, and one short video result.
+A three-shot sequence might move from a wide view of a misty street, to a cyclist crossing a bridge, to a close-up of a bicycle wheel on the wet pavement. The concept, storyboard and scene prompts connect these shots into a visual sequence.
 
-Ask: what connects the shots? What must stay the same, and what changes from one scene to the next?
+What connects the shots? What must stay the same, and what changes from one scene to the next?
 
-Keep the model explanation brief. The practical focus is how a description guides an output, how the model interprets it, and where it fails to match our intention.
+We will look at how a description guides an output and where the result differs from what you intended.
 
 ## Block 2: Replicate web UI and visual prompt craft
 
@@ -87,13 +85,13 @@ Identify which details describe content, which describe visual treatment, and wh
 
 In pairs, rewrite a plain scene in three styles: realistic, surreal, and graphic. Generate one selected version and discuss what changed.
 
-Demonstrate the instructor-selected model in Replicate's web UI. Distinguish prompt descriptions from actual model settings, such as image dimensions when supported. Negative prompts and other controls should only be demonstrated when the selected model supports them.
+Open the class model in Replicate's web UI. Notice the difference between a scene description and model settings, such as image dimensions. Use negative prompts or other controls only when the model supports them.
 
-Use prepared outputs for optional comparisons across models so the class can discuss differences without waiting for extra generations.
+Compare the example outputs from different models. Which details of the same prompt are interpreted differently?
 
 ## Block 3: Notebook walkthrough and first generation
 
-Continue the same task in Jupyter using the [short API notebook](./notebooks/01_replicate_basics.ipynb) or its [scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb). Choose one for the 20-minute walkthrough; both use the same API steps. The scene-prompt version turns the Block 2 structure into an editable dictionary, then assembles and displays a single text prompt. It starts with an offline practice diagram; switch to live mode for real generation with the instructor:
+Continue the same task in Jupyter using the [short API notebook](./notebooks/01_replicate_basics.ipynb) or its [scene-prompt version](./notebooks/01b_replicate_scene_prompts.ipynb). Both follow the same API steps. The scene-prompt version turns the Block 2 structure into an editable dictionary, then assembles and displays a single text prompt. It starts with an offline practice diagram; switch to live mode when we begin generating images together:
 
 1. Enter your API token privately using the supplied setup method.
 2. Use the initial class model example and edit the prompt. The basics notebook uses one model; the Telephone notebook adds a curated dropdown.
@@ -103,7 +101,7 @@ Continue the same task in Jupyter using the [short API notebook](./notebooks/01_
 
 In the scene-prompt version, the `scene` dictionary holds subject, action, setting, time, medium/style, lighting, composition/camera, palette and mood. These are writing aids, not separate Replicate parameters. Only the assembled text is sent as `inputs["prompt"]`; image dimensions and output format remain model settings.
 
-The notebook should make the relationship between web UI inputs and API inputs visible. Students edit text and a few settings; they do not need to write Python from scratch.
+The notebook uses the same kinds of inputs as the web UI. You edit text and a few settings; you do not need to write Python from scratch.
 
 Keep a baseline and one revised prompt in the record. Choose one intentional change, such as camera angle or lighting, and explain what you expected it to do. A single pair of outputs is an observation, not proof that a prompt change always works.
 
@@ -115,11 +113,11 @@ Use provided example images if generation is unavailable. Never include API toke
 
 ### Group structure
 
-Form six groups of five. All passing stays within each group, following a fixed circular order:
+Work in one of six groups of five. All passing stays within your group, following a fixed circular order:
 
 **S01 → S02 → S03 → S04 → S05 → S01**
 
-The working H26 format uses five rounds with everyone active. Each student starts a separate chain in round one. In subsequent rounds, they describe the image received from the previous student and generate a new interpretation.
+You will play five rounds. Start your own chain in round one. In later rounds, describe the image you receive from the previous person and generate a new interpretation.
 
 ### Each round
 
@@ -129,30 +127,30 @@ The working H26 format uses five rounds with everyone active. Each student start
 4. Save each attempt privately, compare the results, and select the one you want to pass.
 5. Upload only the image to your group's SWITCHdrive folder for the next participant.
 
-Use one shared, instructor-selected image model during the game. Do not pass a Replicate generation-page link, because it may reveal the prompt. Keep prompt records private until the reveal.
+Use the same class image model during the game. Do not pass a Replicate generation-page link, because it may reveal the prompt. Keep prompt records private until the reveal.
 
-Retain the familiar filename notation, such as `01.png`, `01_02.png`, and `01_02_03.png`. The Telephone notebook calculates file assignments and exports the selected PNG with that attempt's prompt and settings hidden in its pixels for the instructor's reveal. Pass the original file without resizing or converting it. Students transfer it through SWITCHdrive. Shared folders rely on the rule to open only the assigned image.
+Retain the familiar filename notation, such as `01.png`, `01_02.png`, and `01_02_03.png`. The Telephone notebook calculates file assignments and exports the selected PNG with that attempt's prompt and settings hidden in its pixels for the final reveal. Pass the original file without resizing or converting it. Upload it through SWITCHdrive. Shared folders rely on the rule to open only the assigned image.
 
-Starter themes can include *Serenity*, *Ritual*, *Metropolis*, *Decay*, *Connection*, and *Chaos*. Encourage playful drift: ambiguity and unexpected interpretation are part of the activity.
+Starter themes can include *Serenity*, *Ritual*, *Metropolis*, *Decay*, *Connection*, and *Chaos*. Ambiguity and unexpected interpretations are part of the game.
 
-The 45-minute block includes instructions and image transfers. Round pacing will be checked with the chosen model before teaching.
+The 45-minute block includes image transfers. Leave time in each round to select and upload your image.
 
-[Artistic Telephone guide](./notes/artistic_telephone.md): the five-round flow, original notation, starter themes, and handoff instructions for 30 students.
+[Artistic Telephone guide](./activities/artistic_telephone.md): the five-round flow, original notation, starter themes, and handoff instructions for 30 students.
 
 ## Block 5: Chain reveal and discussion
 
-Use [the instructor reveal notebook](./notebooks/03_telephone_reveal.ipynb) to decode all selected PNGs from the group folders and display each chain in order, with prompts revealed on demand. Each group selects one chain to discuss.
+We will view the image chains in order and reveal the prompts behind them. Choose one chain with your group and discuss how it changed.
 
 - Which subjects, colours, or compositions persisted?
 - Which details disappeared or changed?
 - Where did wording suggest a change, and where might generation variability have contributed?
 - When was drift interesting, and when did it conflict with the intended result?
 
-Keep the mini-gallery playful, with optional highlights for Most Surprising Transformation or Best Scene Composition.
+Which chain would you nominate for Most Surprising Transformation or Best Scene Composition?
 
 ## Block 6: Storyboard, refinement, and video demonstration
 
-Use a prepared three-shot template to keep this segment focused.
+Use the three-shot template below to plan a short sequence.
 
 ### Plan and refine (12 minutes)
 
@@ -168,13 +166,13 @@ Identify one detail lost during the game, or one inconsistency to repair. Revise
 
 ### Image-to-video demonstration (8 minutes)
 
-The instructor uses a selected image to demonstrate a short video request. Make the distinction between **subject movement** and **camera movement** explicit:
+We will turn a selected image into a short video. Notice the difference between **subject movement** and **camera movement**:
 
 > The cyclist moves slowly across the bridge while the camera tracks alongside. Mist drifts above the water; retain the dawn lighting and muted palette.
 
-Show how the starting image, motion description, and supported model settings feed into the next workflow step. Discuss unexpected motion, changes to appearance, and what to revise. Keep a prepared video available so the demonstration does not depend on generation finishing live.
+Follow how the starting image, motion description and model settings feed into the video request. Compare the result with the starting image: what moved, what changed in appearance, and what would you revise?
 
-Student video generation is an optional extension. A completed video is not required.
+You can try generating a video as an optional extension. A completed video is not required.
 
 ## Block 7: Save work and wrap up
 
@@ -186,9 +184,3 @@ Keep the following together:
 - One revised prompt, why you changed it, and an output comparison if generated.
 
 Preserve the first and revised outputs where available. Selected visuals can guide the audio work in Session 2 and support discussion in Session 3.
-
-## Delivery and preparation notes
-
-Use breakout rooms online or table groups in person. The same notebooks, SWITCHdrive folders, image-passing rules, and digital submissions apply in both settings. Use screen sharing or projection for the gallery and video demonstration.
-
-Before teaching, check the notebook setup, one complete group handoff, and model latency. Prepare image/video examples and provide the class folder links. The initial API example uses FLUX.1 schnell from the previous guide; confirm the final model choice and live behaviour before class. The notebooks' offline diagrams rehearse mechanics and do not replace prepared generated examples.
