@@ -14,7 +14,7 @@ from PIL import Image
 import nbformat
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "notebooks"))
-from telephone_helpers import route, practice_image, history, save_record, export_handoff
+from telephone_helpers import route, practice_image, history, save_record, export_handoff, rebuild_handoff
 from telephone_attempts import Attempts
 from telephone_steg import encode, decode, HEADER
 from telephone_gallery import scan, render
@@ -73,6 +73,23 @@ class TelephoneRevealTests(unittest.TestCase):
             with self.assertRaises(FileExistsError):
                 export_handoff(folder, second)
             self.assertNotIn("schema", json.loads((first / "record.json").read_text()))
+
+    def test_verified_export_and_rebuild_of_old_damaged_handoff(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            attempts = Attempts(root)
+            attempts.generate(context())
+            run = attempts.save()
+            target = export_handoff(root, run)
+            self.assertEqual(decode(target.read_bytes())["prompt"], "A calm lake")
+            target.write_bytes(practice_image())  # Simulate an old invalid PNG.
+            with self.assertRaises(FileExistsError):
+                export_handoff(root, run)
+            replacement = rebuild_handoff(root, run)
+            self.assertNotEqual(replacement, target)
+            self.assertEqual(decode(replacement.read_bytes())["prompt"], "A calm lake")
+            with self.assertRaises(ValueError):
+                decode(target.read_bytes())
 
     def test_live_retry_snapshot_and_recovery_do_not_generate(self):
         with tempfile.TemporaryDirectory() as folder:
