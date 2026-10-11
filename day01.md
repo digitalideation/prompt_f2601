@@ -2,7 +2,7 @@
 
 [Back to the course homepage](./readme.md)
 
-**Duration:** 2 h 30 min, including a 10-minute break.  
+**Duration:** 2 h 20 min (140 minutes), including a 10-minute break.  
 **Delivery:** Online or in person, to be confirmed. Activities and learning goals are the same in either format.  
 **Class:** 30 students, working in six groups of five for Artistic Telephone.  
 **Tools:** Replicate web UI, a prepared Jupyter Notebook, and SWITCHdrive.
@@ -36,14 +36,14 @@ By the end of the session, you should be able to:
 | Block | Activity | Duration |
 | --- | --- | --- |
 | 1 | How models work and visual workflow introduction | 10 min |
-| 2 | Replicate web UI and visual prompt craft | 20 min |
+| 2 | Replicate web UI and visual prompt craft | 15 min |
 | 3 | Notebook walkthrough and first generation | 20 min |
 | | Break | 10 min |
 | 4 | Artistic Telephone | 45 min |
 | 5 | Chain reveal and discussion | 15 min |
 | 6 | Storyboard, refinement, and video demonstration | 20 min |
-| 7 | Save work and wrap up | 10 min |
-| | **Total** | **150 min** |
+| 7 | Save work and wrap up | 5 min |
+| | **Total** | **140 min** |
 
 ## Block 1: Visual workflow introduction
 

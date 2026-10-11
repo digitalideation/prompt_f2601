@@ -8,7 +8,7 @@ Practical prompting for images, video, music, sound, and text, with an emphasis 
 
 These pages cover GM's three sessions. We move from visual generation to multimodal creation, then evaluate whether changes to prompts and workflows improve the results.
 
-Each session lasts **2 h 30 min, including a 10-minute break**. All sessions can run **online or in person**, with the same activities and learning goals. The delivery format will be confirmed before each session.
+Each session lasts **2 h 20 min (140 minutes), including a 10-minute break**. All sessions can run **online or in person**, with the same activities and learning goals. The delivery format will be confirmed before each session.
 
 ## Sessions
 

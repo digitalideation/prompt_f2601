@@ -2,7 +2,7 @@
 
 [Session plan](../day01.md) | [Notebook setup](../notebooks/README.md) | [Artistic Telephone activity](../activities/artistic_telephone.md)
 
-These notes support the 150-minute session. Use the same learning sequence online or in person. Group discussion happens in breakout rooms or around tables; media sharing stays digital in both formats.
+These notes support the 140-minute session: 130 minutes of activities and a 10-minute break. Use the same learning sequence online or in person. Group discussion happens in breakout rooms or around tables; media sharing stays digital in both formats.
 
 ## Prepare before class
 
@@ -26,7 +26,7 @@ Suggested concept: a quiet city waking up. Ask students to name the features con
 
 Explain only enough model background to support decisions. A model interprets descriptions through learned patterns; it does not guarantee every requested detail. Avoid extended diffusion/latent-space teaching here because this session focuses on creative practice and connects to the technical lecturer's material.
 
-## Block 2: Prompt craft in the web UI, 20 minutes
+## Block 2: Prompt craft in the web UI, 15 minutes
 
 ### Keep the useful scene-writing exercise
 
@@ -114,7 +114,7 @@ Ask students to separate subject movement, environmental movement, and camera mo
 
 No student video generation is required. Do not add p5.js or a full editing task.
 
-## Block 7: Save and wrap up, 10 minutes
+## Block 7: Save and wrap up, 5 minutes
 
 Students retain image-chain contributions, prompts/settings, observations, a three-shot plan and a repair prompt. The shared PNGs supply the selected-chain gallery without collecting private logs. Students keep their local attempt folders and submit reflection/storyboard/refinement work through the usual class location.
 
