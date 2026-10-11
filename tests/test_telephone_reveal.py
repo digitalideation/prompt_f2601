@@ -18,6 +18,7 @@ from telephone_helpers import route, practice_image, history, save_record, expor
 from telephone_attempts import Attempts
 from telephone_steg import encode, decode, HEADER
 from telephone_gallery import scan, render
+from telephone_presentation import ordered_chains, chain_positions, image_slide, summary_slide, RevealPlayer
 
 
 def context(seat=1, round_number=1, prompt="A calm lake"):
@@ -240,6 +241,40 @@ class TelephoneRevealTests(unittest.TestCase):
             self.assertEqual(len(records), 1)
             self.assertTrue(any("unreadable" in msg for msg in warnings))
             self.assertIn("Prompt unavailable", render(records, warnings))
+
+    def test_cinematic_reveal_hides_prompts_until_requested(self):
+        with tempfile.TemporaryDirectory() as folder:
+            group = Path(folder) / "Group_A"
+            group.mkdir()
+            first = context(prompt="Secret for the final reveal")
+            (group / "01.png").write_bytes(encode(practice_image(), first))
+            (group / "05_01.png").write_bytes(practice_image())
+            records, warnings = scan(folder)
+            self.assertEqual(warnings, [])
+            chains = ordered_chains(records)
+            self.assertEqual(chains, [
+                ("class1", "practice", "A", 1),
+                ("class1", "practice", "A", 5),
+            ])
+            positions = chain_positions(records, chains[0])
+            self.assertEqual(len(positions), 5)
+            self.assertEqual(positions[1]["status"], "missing")
+            self.assertNotIn(first["prompt"], image_slide(chains[0], positions[0], 1, 5))
+            self.assertIn(first["prompt"], summary_slide(records, chains[0]))
+            self.assertIn("Prompt unavailable", summary_slide(records, chains[1]))
+            presenter = RevealPlayer(records)
+            self.assertNotIn(first["prompt"], presenter.stage.value + presenter.prompt.value)
+            presenter._reveal(None)
+            self.assertIn(first["prompt"], presenter.prompt.value)
+            presenter._next(None)
+            self.assertEqual(presenter.prompt.value, "")
+            for _ in range(4):
+                presenter._next(None)
+            self.assertEqual(presenter.slide_index, 5)
+            self.assertIn(first["prompt"], presenter.stage.value)
+            presenter._next(None)
+            self.assertEqual(presenter.chain_index, 1)
+            self.assertEqual(presenter.slide_index, 0)
 
     def test_notebook_round_steps_and_prompts_follow_inspection(self):
         notebook = Path(__file__).resolve().parents[1] / "notebooks" / "02_artistic_telephone.ipynb"
