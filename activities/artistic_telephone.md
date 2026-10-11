@@ -13,7 +13,7 @@ Explore how meaning, style, and composition drift when an image is described and
 - Note your group letter (A to F) and seat number (01 to 05). Keep these assignments fixed.
 - Each group uses its own shared SWITCHdrive folder. Use the folder link shared in class and check that you can upload and download.
 - Everyone uses an individual Replicate account and the same class image model. The initial example is [FLUX.1 schnell](https://replicate.com/black-forest-labs/flux-schnell). Use the model specified for the activity.
-- Run your own copy of the notebook. Tokens and prompt logs stay private.
+- Log into your own JupyterHub account, clone the course repository as described in [JupyterHub setup](../notebooks/README.md), and save your own working copy of the notebook. Tokens and prompt logs stay private.
 - Choose a group coordinator to help with filenames, missing uploads, and the round timer.
 
 All passing stays inside your group:
