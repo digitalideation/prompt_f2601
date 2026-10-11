@@ -36,11 +36,11 @@ def chain_positions(records, chain):
     return result
 
 
-def _image(entry, max_height="72vh"):
+def _image(entry):
     src = base64.b64encode(entry["data"]).decode("ascii")
     return (f'<img alt="Selected handoff image" src="data:image/png;base64,{src}" '
-            f'style="display:block;max-width:100%;width:auto;max-height:{max_height};'
-            'object-fit:contain;margin:0 auto;">')
+            'style="display:block;max-width:100%;max-height:100%;width:auto;'
+            'height:auto;object-fit:contain;margin:0 auto;">')
 
 
 def _prompt(entry):
@@ -63,8 +63,14 @@ def _title(chain):
     return f"Group {group} · Chain {start:02d} · {session} / {mode}"
 
 
-def image_slide(chain, position, position_number, total):
-    """Large image only: prompt is intentionally not part of this HTML."""
+def image_slide(chain, position, position_number, total, image_height=420):
+    """Compact, viewport-aware stage; prompt is not part of this HTML.
+
+    image_height is a maximum size in CSS pixels, also capped at 55% of
+    the browser viewport height for laptops and JupyterLab.
+    """
+    if not isinstance(image_height, int) or not 200 <= image_height <= 1000:
+        raise ValueError("IMAGE_HEIGHT must be an integer between 200 and 1000.")
     if position["entry"] is None:
         status = "Duplicate chain position" if position["status"] == "duplicate" else "Image missing"
         content = ('<p style="font-size:25px;text-align:center;color:#bcbcbc">'
@@ -73,15 +79,15 @@ def image_slide(chain, position, position_number, total):
         content = _image(position["entry"])
     return (
         '<div style="background:#111;color:white;border-radius:10px;'
-        'padding:16px 18px 24px;min-height:70vh;">'
+        'padding:12px 16px 16px;">'
         '<div style="display:flex;justify-content:space-between;gap:12px;'
         'font:13px system-ui;color:#c4c4c4;margin-bottom:14px">'
         '<span>' + escape(_title(chain)) + '</span>'
         '<span>Image ' + str(position_number) + ' of ' + str(total)
         + ' · Round ' + str(position["round"])
         + ' · ' + escape(position["filename"]) + '</span></div>'
-        '<div style="min-height:60vh;display:flex;align-items:center;'
-        'justify-content:center">' + content + '</div></div>'
+        f'<div style="height:min({image_height}px,55vh);display:flex;align-items:center;'
+        'justify-content:center;overflow:hidden">' + content + '</div></div>'
     )
 
 
@@ -129,9 +135,12 @@ def summary_slide(records, chain):
 class RevealPlayer:
     """Notebook controls: one image, click to reveal prompt, then advance."""
 
-    def __init__(self, records):
+    def __init__(self, records, image_height=420):
         import ipywidgets as widgets
 
+        if not isinstance(image_height, int) or not 200 <= image_height <= 1000:
+            raise ValueError("IMAGE_HEIGHT must be an integer between 200 and 1000.")
+        self.image_height = image_height
         self.records = records
         self.chains = ordered_chains(records)
         self.chain_index = 0
@@ -235,7 +244,8 @@ class RevealPlayer:
             + '</div>'
         )
         self.stage.value = (summary_slide(self.records, chain) if summary
-                            else image_slide(chain, pos, self.slide_index+1, 5))
+                            else image_slide(chain, pos, self.slide_index+1, 5,
+                                             image_height=self.image_height))
         self.prompt.value = (
             '<div style="border:1px solid #dadada;border-radius:8px;padding:18px;'
             'font:18px/1.55 system-ui;white-space:normal;margin-top:10px;">'
@@ -244,9 +254,9 @@ class RevealPlayer:
         )
 
 
-def presentation(records):
-    """Show one image at a time in Jupyter. Returns the controller for reuse."""
+def presentation(records, image_height=420):
+    """Show one image at a time, capped to image_height CSS pixels."""
     from IPython.display import display
-    player = RevealPlayer(records)
+    player = RevealPlayer(records, image_height=image_height)
     display(player.widget)
     return player
